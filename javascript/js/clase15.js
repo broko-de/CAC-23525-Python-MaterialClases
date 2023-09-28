@@ -56,10 +56,10 @@ function watchMovie(){
 
 }
 
-watchMovie();
+// watchMovie();
 // console.log('Fuera de la funcion: ',globalMovie);
 // console.log('Fuera de la funcion: ',localMovie); Error al querer acceder a una variable local
-console.log(letVariable);
+// console.log(letVariable);
 function getMovie(){
     let movie1 = 'Mario bros';
     movie1='Barbie';
@@ -81,5 +81,67 @@ function getMovie(){
 
 // getMovie();
 // console.log('Por fuera de la funcion: ',movie1);
+function parseRatingToStars(rating){
+    let response;
+    if(rating>5){
+        return 'El valor no corresponde';
+    }
+    switch (parseInt(rating)) {
+        case 5:
+            response = '⭐⭐⭐⭐⭐';
+            break;
+        case 4:
+            response = '⭐⭐⭐⭐';
+            break;
+        case 3:
+            response = '⭐⭐⭐';
+            break;
+        case 2:
+            response = '⭐⭐';
+            break;
+        case 1:
+            response = '⭐';
+            break;
+        default:
+            response = '---';
+            break;
+    }
+    return response;
+}
+
+// let stars = parseRatingToStars(2);
+// console.log('La cantidad de estrellas es: ',stars);
+// console.log('La cantidad de estrellas es: ',parseRatingToStars(10));
+
+function checkWatchMovie2(age,hasTicket){
+    //asignacion de un valor de acuerdo a la comprobación de una condición
+    return (age>=13 && hasTicket)?
+            'Puedes ver la pelicula':
+            'No cumples con los requisitos 😣';
+    // return message;
+    // if(age>=13 && hasTicket){
+    //     return 'Puedes ver la pelicula';
+    // }else{
+    //     return 'No cumples con los requisitos 😣';
+    // }
+    // console.log(message);
+}
+
+// sellTicket(5); Error
+
+// console.log(checkWatchMovie2(23,false));
+const sellTicket = (numberTickets) => {
+    for(let i=1;i<=numberTickets;i++){
+        console.log('Ticket vendido nro:', i);
+    }
+    console.log('Se vendieron todas las entradas');
+}
+
+console.log(typeof(sellTicket));
+sellTicket(5);
+// sellTicket = 'hola';
+// sellTicket(10);
+
+
 
 
