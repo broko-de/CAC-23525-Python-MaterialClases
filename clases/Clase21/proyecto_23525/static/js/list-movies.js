@@ -37,11 +37,14 @@ const fetchMovies = () => {
         // .then(function(response){
         //     console.log(response)
         // })
-        .catch(err => console.log(err));
+        .catch(error => {
+            console.error(error);
+        });
 }
 let pages = 1
 
 const getNext = () => {
+   
     pages=pages+1;
     fetch(`${API_URL}/movie/popular?page=${pages}`, options)
     // Primero debo convertir la respuesta en JSON
