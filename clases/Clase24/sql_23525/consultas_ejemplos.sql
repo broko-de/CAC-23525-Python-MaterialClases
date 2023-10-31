@@ -163,3 +163,42 @@ WHERE YEAR(release_date) < 1990 OR YEAR(release_date) > 2010;
 SELECT m.title, r.reviewer_name, r.rating, r.comment
 FROM movies as m
 INNER JOIN reviews as r ON m.id_movie = r.id_movie;
+
+--LEFT JOIN
+SELECT m.title, COALESCE(r.reviewer_name, 'Sin críticas') AS reviewer_name, r.rating, r.comment
+FROM movies m
+LEFT JOIN reviews r ON m.id_movie = r.id_movie;
+
+--RIGHT JOIN
+SELECT r.reviewer_name, r.rating, r.comment, COALESCE(m.title, 'Sin película asociada') AS movie_title
+FROM reviews r
+RIGHT JOIN movies m ON r.id_movie = m.id_movie;
+
+Encontrar el titulo, el nombre del revisor y el comentario
+SELECT m.title, r.reviewer_name, r.comment
+FROM movies m
+JOIN reviews r ON m.id_movie=r.id_movie;
+
+SELECT m.title, r.reviewer_name, r.comment
+FROM reviews r
+INNER JOIN movies m ON m.id_movie=r.id_movie;
+
+Promedio de calificacion por pelicula, cantidad de criticas
+SELECT m.title, AVG(r.rating) AS average_rating, COUNT(r.id_review) as number_reviews
+FROM reviews r
+INNER JOIN movies m ON m.id_movie=r.id_movie
+GROUP BY m.id_movie;
+
+Obtener puntuacion maxima y minima por pelicula
+SELECT m.title, MAX(r.rating) AS max_rating, MIN(r.rating) AS min_rating
+FROM reviews r
+INNER JOIN movies m ON m.id_movie=r.id_movie
+GROUP BY m.id_movie;
+
+
+Listar peliculas con los nombres de los generos
+SELECT m.title, GROUP_CONCAT(g.name SEPARATOR ',') AS genres
+FROM movies m
+INNER JOIN movies_genres mg ON m.id_movie = mg.id_movie
+INNER JOIN genres g ON mg.id_genre = g.id_genre
+GROUP BY m.id_movie;
